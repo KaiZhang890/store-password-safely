@@ -1,11 +1,12 @@
 # store-password-safely
-安全存储用户密码解决方案，以iOS + Node.js示例。
+安全存储用户密码解决方案，HTTPS + SSL Pinning + sha256(FIXED_SALT + password) + bcrypt，以iOS + Node.js示例。
+
 望能稍微重视下用户隐私和网络安全。
 
 ## 整体流程如下：
 
 - 实现HTTPS服务。
-- 客户端实现SSL Pining。
+- 客户端实现SSL Pinning。
 - 客户端对用户输入的password进行哈希运算，sha256(FIXED_SALT + password)。
 - 服务端使用Bcrypt算法存储、验证用户输入。
 
@@ -41,12 +42,12 @@ httpsServer.listen(8080);
 	lsof -i:8080
 	kill -9 PID
 
-## SSL Pining：
+## SSL Pinning：
 [通过SSL Pinning提高iOS应用的安全性](http://alvinhu.com/blog/2013/06/26/secure-ios-apps-on-ssl-pinning/)
 
 [iOS安全系列之一：HTTPS](http://oncenote.com/2014/10/21/Security-1-HTTPS/)
 
-从服务端获取SSL Pining需要的证书：
+从服务端获取SSL Pinning需要的证书：
 
 	openssl s_client -connect 127.0.0.1:8080 </dev/null 2>/dev/null | openssl x509 -outform DER > myserver.cer
 	
