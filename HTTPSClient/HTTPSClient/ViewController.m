@@ -47,18 +47,42 @@
     
     manager.securityPolicy = securityPolicy;
     
-    NSString *URLString = @"https://192.168.9.119:8080";
-    URLString = @"https://127.0.0.1:8080";
+    /*
+    NSString *URLString = @"https://127.0.0.1:8080";
     [manager GET:URLString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+     */
+    
+    
+     NSString *URLString = @"https://127.0.0.1:8080/password";
+     NSString *password = @"123";
+     password = [[@"FIXED_SALT" stringByAppendingString:password] SHA256];
+     // 向服务端发送的密码：40677f46dccb64da0d0ef6e88bce39742a859d252556f6add61fadc901f81ff6
+     // 服务端存储为：$2a$10$bhe/cF.oyTQPLWUPRFHduOZf8HtJD1QzHOCbdLBQcr7qkmfFFk7Wm
+     NSLog(@"sent password: %@", password);
+    
+    /*
+    [manager POST:URLString
+       parameters:@{@"password": password}
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              NSLog(@"JSON: %@", responseObject);
+          }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              NSLog(@"Error: %@", error);
+          }];
+     */
+    
+    [manager GET:URLString
+      parameters:@{@"password": password}
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSLog(@"JSON: %@", responseObject);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+         }];
 }
 
 @end

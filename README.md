@@ -66,6 +66,8 @@ manager.securityPolicy = securityPolicy;
 ```
 
 ## sha256(FIXED_SALT + password)：
+[NSHash](https://github.com/jerolimov/NSHash)
+
 客户端对用户密码进行哈希运算：
 
 ```objective-c
@@ -73,9 +75,24 @@ NSString *password = @"123";
 password = [[@"FIXED_SALT" stringByAppendingString:password] SHA256];
 ```
 ## bcrypt：
+[bcrypt-nodejs](https://www.npmjs.com/package/bcrypt-nodejs)
+
 服务端使用Bcrypt算法处理
 
-[bcrypt-nodejs](https://www.npmjs.com/package/bcrypt-nodejs)
+```javascript
+bcrypt.hash("bacon", null, null, function(err, hash) {
+    // Store hash in your password DB.
+});
+ 
+// Load hash from your password DB.
+bcrypt.compare("bacon", hash, function(err, res) {
+    // res == true
+});
+bcrypt.compare("veggies", hash, function(err, res) {
+    // res = false
+});
+```
+
 
 # License
 WTFPL (Do What The Fuck You Want To Public License).

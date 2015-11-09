@@ -3,14 +3,7 @@ var https = require('https');
 var fs = require('fs');
 var bcrypt = require('bcrypt-nodejs');
 
-/*
- 123
- acbed
- sha256(fixed_salt+password)
- */
-var passwords = ["$2a$10$.2ryUZh0I1bfgsVuwXjtR.j66EHEoZ1QKzUNVwFEYlRae0Zigr2OK",
-                 "$2a$10$unNXyBKkIMAFbfHNUWNtOuZ3FG0/JYhiQT2PIlM6lUIFWEqj/cRcO",
-                 "$2a$10$bhe/cF.oyTQPLWUPRFHduOZf8HtJD1QzHOCbdLBQcr7qkmfFFk7Wm"];
+var passwords = ["$2a$10$FoMAdDroEAnHKCAC9wL4f.Gdl5y1q77TshMM5qPK4Wdlkasrl43em"];
 
 var options = {
 	key: fs.readFileSync('keys/privatekey.pem'),
