@@ -76,3 +76,8 @@ password = [[@"FIXED_SALT" stringByAppendingString:password] SHA256];
 服务端使用Bcrypt算法处理
 
 [bcrypt-nodejs](https://www.npmjs.com/package/bcrypt-nodejs)
+
+# License
+WTFPL (Do What The Fuck You Want To Public License).
+
+http://www.wtfpl.net
